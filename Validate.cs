@@ -9,18 +9,46 @@ namespace Lab10
 {
     class Validate
     {
-        public static string CheckInput(string Input)
+        public static Categories CheckInput(string Input)
         {
             while (true)
             {
-                if (Regex.IsMatch(Input, "^(scifi|horror|animated)$"))
+                Categories genre;
+                if (Enum.TryParse(Input, out genre) == true)
                 {
-                    return Input;
+                    if((int)genre > 3 || (int)genre < 1)
+                    {
+                        Console.WriteLine("I didn't understand that... Try again!");
+                        Input = Console.ReadLine();
+                    }
+                    else
+                        return genre;
                 }
                 else
                 {
                     Console.WriteLine("I didn't understand that... Try again!");
-                    Input = Console.ReadLine().ToLower();
+                    Input = Console.ReadLine();
+                }
+            }
+        }
+        public static bool Continue()
+        {
+            Console.WriteLine("Continue? (y/n)");
+            string x = Console.ReadLine().ToLower();
+
+            while (true)
+            {
+                if (Regex.IsMatch(x, "^(yes|y)$"))
+                {
+                    Console.Clear();
+                    return true;
+                }
+                else if (Regex.IsMatch(x, "^(no|n)$"))
+                    return false;
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again!");
+                    x = Console.ReadLine().ToLower();
                 }
             }
         }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lab10
 {
+    public enum Categories { scifi = 1, horror, animated };
+
     class Movie
     {
         #region Fields

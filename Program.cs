@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,23 @@ using System.Threading.Tasks;
 
 namespace Lab10
 {
+
     class Program
     {
         private static Movie[] MovieList = new Movie[10];
 
         static void Main(string[] args)
         {
-            DefineList(MovieList);
-            Console.WriteLine("What category do you like? (scifi, horror, animated)");
-            PrintMovies(Validate.CheckInput(Console.ReadLine().ToLower()));
+            while (true)
+            {
+                DefineList(MovieList);
+                PrintGenres();
+                Console.WriteLine("What category do you like? (1, 2, 3)");
+                PrintMovies(Validate.CheckInput(Console.ReadLine().ToLower()));
+                if (Validate.Continue() == false)
+                    break;
+            }
+            Console.WriteLine("Goodbye!");
         }
 
         private static void DefineList(Movie[] MovieList)
@@ -31,11 +40,21 @@ namespace Lab10
             MovieList[9] = new Movie("Spirited Away", "animated");
         }
 
-        public static void PrintMovies(string Genre)
+        public static void PrintGenres()
+        {
+            Console.WriteLine(new string('*', 30));
+            Console.WriteLine("{1}......................scifi");
+            Console.WriteLine("{2}.....................horror");
+            Console.WriteLine("{3}...................animated");
+            Console.WriteLine(new string('*', 30));
+            Console.WriteLine();
+        }
+
+        public static void PrintMovies(Categories genre)
         {
             foreach (Movie show in MovieList)
             {
-                if (Genre == show.Category)
+                if (genre.ToString() == show.Category)
                 {
                     Console.WriteLine(show.Title);
                 }

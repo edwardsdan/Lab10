@@ -52,12 +52,20 @@ namespace Lab10
 
         public static void PrintMovies(Categories genre)
         {
+            ArrayList ToSort = new ArrayList();
+            int i = 0;
             foreach (Movie show in MovieList)
             {
                 if (genre.ToString() == show.Category)
                 {
-                    Console.WriteLine(show.Title);
+                    ToSort.Add(show.Title);
+                    i++;
                 }
+            }
+            ToSort.Sort();
+            foreach(string x in ToSort)
+            {
+                Console.WriteLine(x);
             }
         }
     }

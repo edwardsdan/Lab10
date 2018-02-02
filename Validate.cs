@@ -16,7 +16,7 @@ namespace Lab10
                 Categories genre;
                 if (Enum.TryParse(Input, out genre) == true)
                 {
-                    if((int)genre > 3 || (int)genre < 1)
+                    if((int)genre > 4 || (int)genre < 1)
                     {
                         Console.WriteLine("I didn't understand that... Try again!");
                         Input = Console.ReadLine();
@@ -31,6 +31,7 @@ namespace Lab10
                 }
             }
         }
+
         public static bool Continue()
         {
             Console.WriteLine("Continue? (y/n)");

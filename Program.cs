@@ -10,16 +10,16 @@ namespace Lab10
 
     class Program
     {
-        private static Movie[] MovieList = new Movie[10];
+        private static Movie[] MovieList = new Movie[14];
 
         static void Main(string[] args)
         {
+            DefineList(MovieList);
             while (true)
             {
-                DefineList(MovieList);
                 PrintGenres();
-                Console.WriteLine("What category do you like? (1, 2, 3)");
-                PrintMovies(Validate.CheckInput(Console.ReadLine().ToLower()));
+                Console.WriteLine("What category do you like? (1, 2, 3, 4)");
+                PrintMovies(Validate.CheckInput(Console.ReadLine().ToLower())); 
                 if (Validate.Continue() == false)
                     break;
             }
@@ -38,28 +38,33 @@ namespace Lab10
             MovieList[7] = new Movie("Princess Mononoke", "animated");
             MovieList[8] = new Movie("Howl's Moving Castle", "animated");
             MovieList[9] = new Movie("Spirited Away", "animated");
+            MovieList[10] = new Movie("300", "action");
+            MovieList[11] = new Movie("Terminator", "action");
+            MovieList[12] = new Movie("Die Hard", "action");
+            MovieList[13] = new Movie("Fifth Element", "action");
         }
 
+        #region Printing
         public static void PrintGenres()
         {
             Console.WriteLine(new string('*', 30));
             Console.WriteLine("{1}......................scifi");
             Console.WriteLine("{2}.....................horror");
             Console.WriteLine("{3}...................animated");
+            Console.WriteLine("{4}.....................action");
             Console.WriteLine(new string('*', 30));
             Console.WriteLine();
         }
 
         public static void PrintMovies(Categories genre)
         {
+            Console.WriteLine();
             ArrayList ToSort = new ArrayList();
-            int i = 0;
             foreach (Movie show in MovieList)
             {
                 if (genre.ToString() == show.Category)
                 {
                     ToSort.Add(show.Title);
-                    i++;
                 }
             }
             ToSort.Sort();
@@ -67,6 +72,8 @@ namespace Lab10
             {
                 Console.WriteLine(x);
             }
+            Console.WriteLine();
         }
+        #endregion
     }
 }

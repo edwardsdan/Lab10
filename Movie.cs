@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab10
 {
-    public enum Categories { scifi = 1, horror, animated };
+    public enum Categories { scifi = 1, horror, animated, action };
 
     class Movie
     {
